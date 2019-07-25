@@ -1,6 +1,8 @@
 Sub AddNull()
 
-    ' Macro adds a null 
+    ' Macro that takes a program (powershell.exe) and adds a nullbyte to the beginning to change the checksum
+    ' Author: PovlTekstTV
+
     'Variables
     Dim Filename As String
     Dim Bytearray() As Byte
