@@ -2,6 +2,7 @@ Sub AddNull()
 
     ' Macro that takes a program (powershell.exe) and adds a nullbyte to the beginning to change the checksum
     ' Author: PovlTekstTV
+    ' Date: 28th of January 2018
 
     'Variables
     Dim Filename As String
